@@ -1,6 +1,6 @@
 {
 	"name": "s3_group2_vms",
-	"version": "1.0",
+	"version": "1.0.0",
 	"description": "BENR2423 Visitor Mangement System",
 	"main": "main.js",
 	"engines": {
