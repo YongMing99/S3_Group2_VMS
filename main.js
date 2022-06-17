@@ -20,7 +20,7 @@ const { raw } = require("express");
 const jwt = require('jsonwebtoken');
 const Admin = require("./admin");
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
