@@ -20,8 +20,8 @@
 		"swagger-ui-express": "^4.4.0"
 	},
 	"devDependencies": {
-		"@shelf/jest-mongodb": "^2.2.2",
-		"jest": "^28.1.0",
+		"@shelf/jest-mongodb": "^3.0.1",
+		"jest": "^28.1.1",
 		"supertest": "^6.2.3"
 	}
 }

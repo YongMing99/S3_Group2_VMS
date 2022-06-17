@@ -28,7 +28,7 @@ describe('Express Route Test', function () {
 		return request
 			.post('/register')
 			.send({
-				username: 'Ming2', 
+				username: 'lee', 
 				password: "p@ss", 
 				phone: "123456",
 				email:"ming@gmail.com",
