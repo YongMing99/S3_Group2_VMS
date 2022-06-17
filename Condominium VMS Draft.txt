@@ -1,0 +1,46 @@
+Tenant:
+	Create Account
+	Login/Logout
+	Create Visitor
+		- Name
+		- IC
+		- Car Number Plate
+		- Date & Time Visit
+		- Tenant's House Number
+	Update Visitor
+		- Update Information
+	Delete Visitor
+	View Visitor
+		- View all history
+	Reserve Facilities
+		- Hall
+			- Name
+			- Block Number
+			- Date & Time
+		- Court
+			- Name
+			- Block Number
+			- Date & Time
+
+Management & Security:
+	View All Visitors
+		- Visitor visit time 
+		- Visitor Information
+	Manage Tenant
+		- Add / Remove Tenant
+	Manage Visitor
+		- Blacklist / Remove Visitor
+	View Blacklisted Visitor
+	View Availability of Facilities
+
+Visitor:
+	Add Health / Vacination Details
+		- Health Status
+		- Vaccination Status
+	View Access Info
+		- Visitor Information
+		- Tenant visited
+		- Helath Status
+	
+		
+			
