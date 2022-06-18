@@ -10,6 +10,7 @@ tenant's account and visitors.The case diagram below show the function that each
 ![image](https://user-images.githubusercontent.com/82641277/174312410-da5c5f83-55b2-4283-869a-23d1864569f2.png)  
   
 Crow's foot diagram below show the entities and relationship.
-![image](https://user-images.githubusercontent.com/82641277/174313511-19a73cf7-6f43-457b-9f90-03e824542c33.png)  
+![image](https://user-images.githubusercontent.com/82641277/174437557-050c4c8a-5fe0-45ec-8e42-648f4e4062e9.png)
+
   
 Program and test program for Users, Visitor and Admin provided in repository together with main.js.  
