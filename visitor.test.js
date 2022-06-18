@@ -30,7 +30,7 @@ describe("Visitor Account Management", () => {
     test("show access", async()=>{
         const res = await Visitor.showAccess("Visitor2")
         expect(res[0].visitor_name).toBe("Visitor2");
-        expect(res[0].visitor_car_plate).toBe("DEF 2");
+        expect(res[0].visitor_car_plate).toBe("ABC 1");
         expect(res[0].visitation_date).toBe("18/06/2022");
         expect(res[0].tenant_name).toBe("Ming2");
         expect(res[0].tenant_block).toBe("A2");

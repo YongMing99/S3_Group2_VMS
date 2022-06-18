@@ -53,7 +53,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 function generateAccessToken(payload){
-	return jwt.sign(payload, 'secret', { expiresIn: '30m' });
+	return jwt.sign(payload, 'secret', { expiresIn: '1d' });
 }
 
 /**
@@ -246,6 +246,45 @@ app.post('/admin/login', async (req, res) => {
 	}
 	else{
 		res.status(200).json(visitor)
+	}
+})
+
+/**
+ * @swagger
+ * /visitor/health:
+ *   post:
+ *     tags: [Visitor's Features]
+ *     description: Visitor health check
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               health:
+ *                 type: string
+ *               vaccination:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Visitor health check successfully
+ *       400:
+ *         description: Visitor health check failed
+ */
+
+ app.post('/visitor/health', async (req, res) => {
+	const visitor = await Visitor.addHealth(
+		req.body.name,
+		req.body.health,
+		req.body.vaccination);
+	if (visitor == "Visitor not found") {
+		res.status(400).send("No visitor")
+	}
+	else{
+		res.status(200).send("Health information added successfully")
 	}
 })
 

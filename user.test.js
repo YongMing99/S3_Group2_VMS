@@ -16,8 +16,8 @@ describe("User Account Management", () => {
 	})
 
 	test("New user registration", async () => {
-		const res = await User.register("Ming3", "p@ss", "123456", "ming3@gmail.com", "A2", "tenant")
-		expect(res[0].username).toBe("Ming3");
+		const res = await User.register("Ming4", "p@ss", "123456", "ming3@gmail.com", "A2", "tenant")
+		expect(res[0].username).toBe("Ming4");
 		expect(res[0].password).toBe("195f19b835efe9f0b7b4e276ef1a8515");
 		expect(res[0].phone).toBe("123456");
 		expect(res[0].email).toBe("ming3@gmail.com");
@@ -59,14 +59,14 @@ describe("User Account Management", () => {
 	// })
 
 	test("Add visitor successfully", async()=>{
-		const res = await User.addVisitor("Visitor3", "ABC 23", "18/06/2022", "Ming2", "A2")
-		expect(res[0].visitor_name).toBe("Visitor3");
+		const res = await User.addVisitor("Visitor5", "ABC 23", "18/06/2022", "Ming2", "A2")
+		expect(res[0].visitor_name).toBe("Visitor5");
 		expect(res[0].visitor_car_plate).toBe("ABC 23");
 		expect(res[0].visitation_date).toBe("18/06/2022");
 	})
 
 	test("Failed to add visitor", async()=>{
-		const res = await User.addVisitor("Visitor1", "ABC 1", "15/06/2022", "Ming2", "A2")
+		const res = await User.addVisitor("Visitor2", "ABC 1", "18/06/2022", "Ming2", "A2")
 		expect(res).toBe("Visitor already exists on that day")
 	})
 
@@ -83,7 +83,7 @@ describe("User Account Management", () => {
 	})
 
 	test ("Delete visitor successfully", async()=>{
-		const res = await User.deleteVisitor("Visitor1", "15/06/2022", "Ming2")
+		const res = await User.deleteVisitor("Visitor5", "18/06/2022", "Ming2")
 		expect(res).toBe("Visitor deleted")
 	})
 
@@ -93,8 +93,8 @@ describe("User Account Management", () => {
 	})
 
 	test("Reserve facility successfully", async()=>{
-		const res = await User.reserve("hall", "15/06/2022", "1600", "1800", "A1")
-		expect(res[0].facility).toBe("hall");
+		const res = await User.reserve("court", "15/06/2022", "1800", "2000", "A1")
+		expect(res[0].facility).toBe("court");
 		expect(res[0].date).toBe("15/06/2022");
 		expect(res[0].time[0]).toBe("1800");
 		expect(res[0].time[1]).toBe("2000");

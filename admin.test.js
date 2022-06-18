@@ -16,8 +16,8 @@ describe("Visitor Account Management", () => {
 	})
 
     test("New admin registration", async () => {
-		const res = await Admin.register("admin2", "password", "admin")
-		expect(res[0].admin_id).toBe("admin2");
+		const res = await Admin.register("admin3", "password", "admin")
+		expect(res[0].admin_id).toBe("admin3");
         expect(res[0].password).toBe("5f4dcc3b5aa765d61d8327deb882cf99");
         expect(res[0].role).toBe("admin");
 	})
@@ -42,7 +42,7 @@ describe("Visitor Account Management", () => {
     test("Admin view visitor", async () => {
         const res = await Admin.viewVisitors("Visitor2")
         expect(res[0].visitor_name).toBe("Visitor2");
-        expect(res[0].visitor_car_plate).toBe("DEF 2");
+        expect(res[0].visitor_car_plate).toBe("ABC 1");
         expect(res[0].visitation_date).toBe("18/06/2022");
         expect(res[0].tenant_name).toBe("Ming2");
         expect(res[0].tenant_block).toBe("A2");
@@ -56,7 +56,7 @@ describe("Visitor Account Management", () => {
     })
 
     test("Admin remove visitor successfully", async () => {
-        const res = await Admin.removeVisitor("Visitor3")
+        const res = await Admin.removeVisitor("Visitor_delete")
         expect(res).toBe("Visitor removed");
     })
 
