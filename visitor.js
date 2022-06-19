@@ -2,6 +2,7 @@ let users;
 let visitors;
 let facilities;
 
+// Visitor's features
 class Visitor{
     static async injectDB(conn) {
 		users = await conn.db("assignment_g2").collection("users")
@@ -9,6 +10,7 @@ class Visitor{
 		facilities = await conn.db("assignment_g2").collection("facilities")
 	}
 
+    // visitor add health status
     static async addHealth(name, health_status, vaccination){
         const visitor = await visitors.find({visitor_name: name}).count()
         if(visitor > 0){
@@ -20,6 +22,7 @@ class Visitor{
         }
     }
 
+    // Visitor show access
     static async showAccess(name){
         const visitor = await visitors.find({visitor_name: name}).count()
         if(visitor > 0){
