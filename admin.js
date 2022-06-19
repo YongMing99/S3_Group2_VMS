@@ -4,6 +4,7 @@ let visitors;
 let facilities;
 let admins;
 
+// Admin / Management's Features
 class Admin{
     static async injectDB(conn) {
 		users = await conn.db("assignment_g2").collection("users")
@@ -11,7 +12,7 @@ class Admin{
 		facilities = await conn.db("assignment_g2").collection("facilities")
         admins = await conn.db("assignment_g2").collection("admin")
 	}
-
+    // Admin registration
     static async register(admin_id, password, role) {
 		var admin_check = await admins.find({admin_id: admin_id}).count()
 		if (admin_check>0) {
@@ -28,7 +29,7 @@ class Admin{
 			return admins.find({admin_id: admin_id}).toArray()
 		}
 	}
-
+    // Admin login
     static async login(admin_id, password) {
 		var admin_check = await admins.find({admin_id: admin_id}).count();
 		if (admin_check > 0) {
@@ -45,7 +46,7 @@ class Admin{
 			return "Invalid login"
 		}
 	}
-
+    // Admin view specific visitor
     static async viewVisitors(name) {
         var visitor_check = await visitors.find({visitor_name: name}).count();
         if (visitor_check > 0) {
@@ -55,7 +56,7 @@ class Admin{
             return "No visitor found"
         }
     }
-
+    // Admin remove specific visitor
     static async removeVisitor(name){
         var visitor_check = await visitors.find({visitor_name: name}).count();
         if (visitor_check > 0) {
@@ -66,7 +67,7 @@ class Admin{
             return "No visitor found"
         }
     }
-
+    // Admin add tenant / user
     static async addTenant(username, password, phone, email, block, role, admin_id){
         var username_check = await users.find({username: username}).count()
         if (username_check>0) {
@@ -87,7 +88,7 @@ class Admin{
             return users.find({username: username}).toArray()
         }
     }
-
+    // Admin delete tenant / user
     static async removeTenant(username){
         var username_check = await users.find({username: username}).count()
         if (username_check > 0) {
