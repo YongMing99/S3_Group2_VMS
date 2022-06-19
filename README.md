@@ -18,4 +18,6 @@ Crow's foot diagram below show the entities and relationship.
 Program and test program for Users, Visitor and Admin provided in repository together with main.js.  
 This program have been deploy and host on the cloud using Heroku (link provided below):  
 https://serene-lake-31034.herokuapp.com/api-docs/  
+![image](https://user-images.githubusercontent.com/82641277/174462930-5ab3a39c-9d9a-4130-a42d-d4feb275b1ab.png)
+
 
