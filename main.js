@@ -172,7 +172,8 @@ app.post('/register', async (req, res) => {
 app.post('/admin/register', async (req, res) => {
 	const admin = await Admin.register(
 		req.body.admin_id,
-		req.body.password,)
+		req.body.password,
+		req.body.role);
 	if (admin == "Admin ID account already exists") {
 		res.status(400).send("Admin ID account already exists")
 	}
