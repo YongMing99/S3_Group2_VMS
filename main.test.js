@@ -1,18 +1,21 @@
+//Supertest
 const supertest = require('supertest');
 const Visitor = require('./visitor');
 const request = supertest('http://localhost:3000');
+//token for user/tenant
 const token_user = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pbmciLCJyb2xlIjoidGVuYW50IiwiaWF0IjoxNjU1MTg0MDkxLCJleHAiOjE2NTc3NzYwOTF9.Ya6s4vhWSqAIfiitCyBsv3EFC9XsNEVRSncZkpwOeZA';
+//token for admin
 const token_admin = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbl9pZCI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1NTIwMDU2OCwiZXhwIjoxNjU3NzkyNTY4fQ.HVYelT1jdlpnnwEe7IMLcNGVpld_zEdYUvvfxyW03_Y'
 
 describe('Express Route Test', function () {
 	it('user login successfully', async () => {
 		return request
-			.post('/login')
-			.send({username: 'Ming', password: "p@ss" })
+			.post('/login') // endpoint
+			.send({username: 'Ming', password: "p@ss" }) //send request
 			.expect('Content-Type', /json/)
 			.expect(200)
 			.then(res => {
-				expect(res.body.username).toBe('Ming');
+				expect(res.body.username).toBe('Ming'); //expected response
 			});
 	});
 
@@ -114,7 +117,7 @@ describe('Express Route Test', function () {
 	it('add visitor successful', async () => {
 		return request
 			.post('/visitor')
-			.set('authorization', 'Bearer '+ token_user)
+			.set('authorization', 'Bearer '+ token_user) //set token to header
 			.send({
 				visitor: 'Visitor13', 
 				car: "A 1082", 
