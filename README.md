@@ -3,10 +3,10 @@
 BENR2423 Assignment S3 Group2
   
   
-Visitor management systems, database and cloud system for
-condominium which it will record the tenant’s details and visitor’s details which will be
-added by tenant. The admin could access the database to manage the
-tenant's account and visitors.The case diagram below show the function that each role could access to the system.
+Visitor management systems, databases and cloud systems for a condominium will record the
+tenant’s details and visitor’s details which the tenant will add. The admin could access the
+database to manage the tenant’s account and visitors. The case diagram below shows the
+function that each role could access in the system.  
 
 ![Untitled design](https://user-images.githubusercontent.com/82641277/174445836-e4c0a82a-6cc7-4be9-98c9-72903f38380b.png)
    
