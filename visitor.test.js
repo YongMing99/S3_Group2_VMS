@@ -1,3 +1,4 @@
+// Test for visitor.js
 const MongoClient = require("mongodb").MongoClient;
 const Visitor = require("./visitor")
 
