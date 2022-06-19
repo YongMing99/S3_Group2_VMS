@@ -1,10 +1,10 @@
 const MongoClient = require("mongodb").MongoClient;
 const Admin = require("./admin")
-
+// Test code for admin.js
 describe("Visitor Account Management", () => {
     let client;
     beforeAll(async () => {
-		client = await MongoClient.connect(
+		client = await MongoClient.connect( //connection to MongoDB
 			"mongodb+srv://m001-student:m001-mongodb-basics@sandbox.4ai9y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 			{ useNewUrlParser: true },
 		);
@@ -14,7 +14,7 @@ describe("Visitor Account Management", () => {
 	afterAll(async () => {
 		await client.close();
 	})
-
+    
     test("New admin registration", async () => {
 		const res = await Admin.register("admin3", "password", "admin")
 		expect(res[0].admin_id).toBe("admin3");
