@@ -1,8 +1,9 @@
+// RestFUL API
 const MongoClient = require("mongodb").MongoClient;
 const User = require("./user");
 const Visitor = require("./visitor")
 
-MongoClient.connect(
+MongoClient.connect( //connect to mongoDB database
 	"mongodb+srv://m001-student:m001-mongodb-basics@sandbox.4ai9y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 	{ useNewUrlParser: true },
 ).catch(err => {
@@ -21,7 +22,7 @@ const jwt = require('jsonwebtoken');
 const Admin = require("./admin");
 const app = express()
 const port = process.env.PORT || 3000
-
+// Swagger configuration
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const option = {
@@ -51,7 +52,7 @@ const swaggerSpec = swaggerJsdoc(option);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
+// Token generation
 function generateAccessToken(payload){
 	return jwt.sign(payload, 'secret', { expiresIn: '1d' });
 }
@@ -79,9 +80,9 @@ function generateAccessToken(payload){
  *       400:
  *         description: User invalid login
  */
-
+// User login
 app.post('/login', async (req, res) => {
-	const user = await User.login(req.body.username, req.body.password);
+	const user = await User.login(req.body.username, req.body.password); // call function from user.js
 	if (user == "Invalid username" || user == "Invalid password") {
 		res.status(400).send("Invalid username or password")
 	}
@@ -126,7 +127,7 @@ app.post('/login', async (req, res) => {
  *         description: Username already exists
  */
 
-
+// User register
 app.post('/register', async (req, res) => {
 	const user = await User.register(
 		req.body.username, 
@@ -169,11 +170,12 @@ app.post('/register', async (req, res) => {
  *         description: Admin id already exists
  */
 
+// Admin register
 app.post('/admin/register', async (req, res) => {
-	const admin = await Admin.register(
+	const admin = await Admin.register( 
 		req.body.admin_id,
 		req.body.password,
-		req.body.role);
+		req.body.role); // call function from admin.js
 	if (admin == "Admin ID account already exists") {
 		res.status(400).send("Admin ID account already exists")
 	}
@@ -206,6 +208,7 @@ app.post('/admin/register', async (req, res) => {
  *         description: Admin invalid login
  */
 
+// Admin login
 app.post('/admin/login', async (req, res) => {
 	const admin = await Admin.login(req.body.admin_id, req.body.password);
 	if (admin == "Invalid login") {
@@ -241,6 +244,7 @@ app.post('/admin/login', async (req, res) => {
  *         description: Visitor ID not found
  */
 
+ // Visitor get own details
  app.get('/visitor/:id', async (req, res) => {
 	const {id} = req.params;
 	const visitor = await Visitor.showAccess(id);
@@ -278,6 +282,7 @@ app.post('/admin/login', async (req, res) => {
  *         description: Visitor health check failed
  */
 
+// Visitor update own health status
  app.post('/visitor/health', async (req, res) => {
 	const visitor = await Visitor.addHealth(
 		req.body.name,
@@ -291,6 +296,7 @@ app.post('/admin/login', async (req, res) => {
 	}
 })
 
+// Token verification
 app.use((req, res, next) => {
 	const authHeader = req.headers['authorization']
 	const token = authHeader && authHeader.split(' ')[1]
@@ -337,6 +343,7 @@ app.use((req, res, next) => {
  *         description: Visitor information already exists
  */
 
+// User add visitor
 app.post('/visitor', async (req, res) => {
 	if(req.user.role == 'tenant'){
 		const user = await User.addVisitor(
@@ -390,6 +397,7 @@ app.post('/visitor', async (req, res) => {
  *         description: Visitor information not found
  */
 
+// Visitor update visitor
 app.patch('/visitor', async (req, res) => {
 	if(req.user.role == 'tenant' || req.user.role == 'admin'){
 		const user = await User.updateVisitor(req.body.visitor, req.body.date, req.body.tenant, req.body.newName, req.body.newCar);
@@ -432,6 +440,7 @@ app.patch('/visitor', async (req, res) => {
  *         description: Visitor information not found
  */
 
+// User delete visitor
 app.delete('/visitor', async (req, res) => {
 	if(req.user.role == 'tenant' || req.user.role == 'admin'){
 		const user = await User.deleteVisitor(
@@ -479,6 +488,7 @@ app.delete('/visitor', async (req, res) => {
  *         description: Facility already reserved
  */
 
+// Visitor reserve facility
 app.post('/facility', async (req, res) => {
 	if(req.user.role == 'tenant' || req.user.role == 'admin'){
 		const user = await User.reserve(
@@ -520,6 +530,7 @@ app.post('/facility', async (req, res) => {
  *         description: Visitor ID not found
  */
 
+// Admin get visitor details
  app.get('/admin/visitor/:id', async (req, res) => {
 	if (req.user.role == "admin") {
 		const {id} = req.params;
@@ -558,6 +569,7 @@ app.post('/facility', async (req, res) => {
  *         description: Visitor not found
  */
 
+// Visitor delete specific visitor
 app.delete('/admin/visitor', async (req, res) => {
 	if(req.user.role == 'admin'){
 		const admin = await Admin.removeVisitor(req.body.visitor_name);
@@ -607,6 +619,7 @@ app.delete('/admin/visitor', async (req, res) => {
  *         description: Tenant already exists
  */
 
+// Admin add user/tenant
 app.post('/admin/tenant', async (req, res) => {
 	if(req.user.role == 'admin'){
 		const admin = await Admin.addTenant(
@@ -651,6 +664,7 @@ app.post('/admin/tenant', async (req, res) => {
  *         description: Tenant not found
  */
 
+// Admin delete tenant/user
 app.delete('/admin/tenant', async (req, res) => {
 	if(req.user.role == 'admin'){
 		const admin = await Admin.removeTenant(req.body.name);
