@@ -1,3 +1,4 @@
+// Test for user.js
 const MongoClient = require("mongodb").MongoClient;
 const User = require("./user")
 
