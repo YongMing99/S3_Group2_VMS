@@ -22,7 +22,7 @@ class Visitor{
         }
     }
 
-    // Visitor show access
+    // Visitor show access created by user
     static async showAccess(name){
         const visitor = await visitors.find({visitor_name: name}).count()
         if(visitor > 0){
