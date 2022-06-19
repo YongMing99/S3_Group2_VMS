@@ -160,6 +160,8 @@ app.post('/register', async (req, res) => {
  *                 type: string
  *               password:
  *                 type: string
+ *               role:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Admin register successfully
